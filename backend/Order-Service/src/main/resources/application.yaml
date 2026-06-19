@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: Order-Service
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
+
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
+
+product:
+  service:
+    url: ${PRODUCT_SERVICE_URL:http://product-service:8082}
+
+user:
+  service:
+    url: ${USER_SERVICE_URL:http://user-service:8081}
+
+server:
+  port: 8083

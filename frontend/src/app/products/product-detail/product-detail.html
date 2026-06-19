@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="nav-links">
+    <a routerLink="/users">Users</a>
+    <a routerLink="/products">Products</a>
+    <a routerLink="/orders">Orders</a>
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="product" class="detail-card">
+    <div class="card-header">
+      <button class="back-btn" (click)="goBack()">← Back</button>
+      <h2>Product Details</h2>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">ID</span>
+        <span class="badge">#{{ product.id }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Name</span>
+        <span>{{ product.name }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Price</span>
+        <span class="price">${{ product.price }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Stock</span>
+        <span [class.low-stock]="product.stock < 5">{{ product.stock }}</span>
+      </div>
+    </div>
+
+    <div *ngIf="product.imageUrl" class="image-section">
+      <span class="detail-label">Image</span>
+      <img [src]="'http://localhost:8080' + product.imageUrl"
+           [alt]="product.name"
+           class="product-image"
+           (error)="onImageError($event)"/>
+    </div>
+
+    <div class="decrease-section">
+      <input type="number" [(ngModel)]="decreaseQty" min="1" [max]="product.stock" />
+      <button class="btn-danger-outline" (click)="decreaseStock()">− Decrease Stock</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+  <app-navbar></app-navbar>
+  <div class="page-header">
+    <h2>Users</h2>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td><span class="badge">#{{ user.id }}</span></td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td class="actions">
+        <button class="btn-sm" (click)="selectUser(user.id)">View</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="page === 0">← Prev</button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="page === totalPages - 1">Next →</button>
+  </div>
+
+  <div *ngIf="selectedUser" class="card detail-card">
+    <button class="modal-close" (click)="selectedUser = null">✕</button>
+    <h3>User Details</h3>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">ID</span>
+        <span>#{{ selectedUser.id }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Name</span>
+        <span>{{ selectedUser.name }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Email</span>
+        <span>{{ selectedUser.email }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2>Create account</h2>
+      <p>Fill in the details to get started</p>
+    </div>
+    <div class="form">
+      <div class="field">
+        <label>Name</label>
+        <input [(ngModel)]="user.name" placeholder="John Doe" type="text" />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input [(ngModel)]="user.email" placeholder="example@mail.com" type="email" />
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input [(ngModel)]="user.password" placeholder="••••••••" type="password" />
+      </div>
+      <button class="btn-primary btn-full" (click)="register()">Create account</button>
+      <p class="auth-footer">Already have an account? <a routerLink="/">Sign in</a></p>
+    </div>
+  </div>
+</div>
